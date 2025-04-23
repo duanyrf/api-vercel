@@ -1,6 +1,14 @@
+import fastfyCors from "@fastify/cors";
 import { fastify } from "fastify";
 
 const api = fastify();
+
+api.register(fastfyCors, {
+	origin: "*", // Permite apenas requisições desta origem
+	methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Métodos permitidos
+	allowedHeaders: ["Content-Type", "Authorization"], // Cabeçalhos permitidos
+	credentials: true, // Se permite envio de cookies/cabeçalhos de autorização
+});
 
 api.get("/", (req, resp) => {
 	return "Hello world";
