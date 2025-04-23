@@ -1,8 +1,21 @@
 - Criar projeto node e entrar no diretório do projeto
-- Instalar devDependecies: typescript, @types/node, tsx, prisma, @biomejs/biome
+- Instalar devDependecies: typescript, @types/node, tsx e prisma
+- Instalar a devDependency `@biomejs/biome` com o comando `npm install --save-dev --save-exact @biomejs/biome`
+- Gerar o arquivo de config do biome com o comando `npx @biomejs/biome init`, e adicionar a opção de utilização de ponto-e-vírgula
+
+  ```json
+  "javascript": {
+		"formatter": {
+			"quoteStyle": "double",
+      // Adicione a configuração para utilizar ponto-e-vírgula sempre.
+			"semicolons": "always"
+	  }
+  }
+  ```
 - Gerar arquivo tsconfig.json com comando `npx tsc --init` e adicionar configurações recomendadas para a versão do NodeJS utilizada. Adicionar opções de outDir e sourceDir
 - Instalar standard dependencies: fastify, @fastify/cors e @prisma/client
 - Adicionar esses script ao `package.json`:
+
   ```json
   "scripts": {
 		"dev": "tsx watch src/index.ts",
@@ -11,6 +24,7 @@
 	},
   ```
 - Criar arquivo `vercel.json` na raiz do projeto, contendo:
+
   ```json
   {
 	"version": 2,
