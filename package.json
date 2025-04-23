@@ -14,11 +14,13 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@types/node": "^22.14.1",
+		"prisma": "^6.6.0",
 		"tsx": "^4.19.3",
 		"typescript": "^5.8.3"
 	},
 	"dependencies": {
 		"@fastify/cors": "^11.0.1",
+		"@prisma/client": "6.6.0",
 		"fastify": "^5.3.2"
 	},
 	"packageManager": "pnpm@10.6.4+sha512.da3d715bfd22a9a105e6e8088cfc7826699332ded60c423b14ec613a185f1602206702ff0fe4c438cb15c979081ce4cb02568e364b15174503a63c7a8e2a5f6c"
