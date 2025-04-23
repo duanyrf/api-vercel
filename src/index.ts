@@ -1,5 +1,6 @@
 import fastfyCors from "@fastify/cors";
 import { fastify } from "fastify";
+import { userRoutes } from "./routes/userRoutes";
 
 const api = fastify();
 
@@ -9,6 +10,8 @@ api.register(fastfyCors, {
 	allowedHeaders: ["Content-Type", "Authorization"], // Cabeçalhos permitidos
 	credentials: true, // Se permite envio de cookies/cabeçalhos de autorização
 });
+
+api.register(userRoutes, { prefix: "/users" });
 
 api.get("/", (req, resp) => {
 	return "Hello world";
