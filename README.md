@@ -1,3 +1,9 @@
+# Tutorial: API Web utilizando NodeJS + Typescript + Fastify + Prisma ORM
+
+Este projeto foi desenvolvido para servir como um tutorial para a criação de uma API Web usando Fastify e Prisma ORM, mantendo seu código alinhado para o deploy na plataforma Vercel.
+
+## Instruções sobre como recriar o projeto
+
 - Criar projeto node e entrar no diretório do projeto
 - Instalar devDependecies: typescript, @types/node, tsx e prisma
 - Instalar a devDependency `@biomejs/biome` com o comando `npm install --save-dev --save-exact @biomejs/biome`
