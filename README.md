@@ -75,3 +75,17 @@ Este projeto foi desenvolvido para servir como um tutorial para a criação de u
     // ... outros scripts
   },
   ```
+
+## Configurações para Vercel
+
+- Adicionar DATABASE_URL e DIRECT_URL no `.env`, com as informações de conexão adquiridas no supabase
+- Adicionar as linhas abaixo no `schema.prisma`:
+  ```json
+  datasource db {
+    provider  = "postgresql"
+    # Adicionar as linhas abaixo
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
+  }
+  ```
+- Executar `npx prisma migrate deploy` localmente para aplicar as migrations no BD supabase
