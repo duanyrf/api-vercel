@@ -1,6 +1,6 @@
 # Tutorial: API Web utilizando NodeJS + Typescript + Fastify + Prisma ORM
 
-Este projeto foi desenvolvido para servir como um tutorial para a criação de uma API Web usando Fastify e Prisma ORM, mantendo seu código alinhado para o deploy na plataforma Vercel.
+Este projeto foi desenvolvido para servir como um tutorial para a criação de uma API Web usando Fastify e Prisma ORM, junto com o Supabase, mantendo seu código alinhado para o deploy na plataforma Vercel.
 
 ## Instruções sobre como recriar o projeto
 
@@ -52,7 +52,21 @@ Este projeto foi desenvolvido para servir como um tutorial para a criação de u
 - Criar arquivo routes/userRoutes.ts com endpoints de users. Fazer registro do plugin na api
 - Executar `npx prisma init --datasource-provider postgresql --output ./prisma` para gerar schema.prisma e alocar config no diretório prisma
 - Executar `npx prisma generate` para gerar o prisma client no diretório de output
-- Adcionar model User e executar `npx prisma migrate dev --name addUser` para aplicar as alterações ao BD
+- Adcionar model User e executar `npx prisma migrate dev --name addUser` para aplicar as alterações ao BD local
+  - As configurações abaixo são para utilização na Vercel
+    - Adicionar DATABASE_URL e DIRECT_URL no `.env`, com as informações de conexão via ORM adquiridas no supabase
+    - Adicionar as linhas abaixo no `schema.prisma`:
+
+      ```json
+      datasource db {
+        provider  = "postgresql"
+        # Adicionar as linhas abaixo
+        url       = env("DATABASE_URL")
+        directUrl = env("DIRECT_URL")
+      }
+      ```
+
+- Executar `npx prisma migrate deploy` localmente para aplicar as migrations no BD supabase 
 - Configurar singleton para Prisma Client (importar prisma client do diretório prisma do output)
 - Criar arquivo services/addUser.ts com função para salvar user
 - Alterar endpoint POST `/users` para executar service `addUser`
@@ -75,17 +89,3 @@ Este projeto foi desenvolvido para servir como um tutorial para a criação de u
     // ... outros scripts
   },
   ```
-
-## Configurações para Vercel
-
-- Adicionar DATABASE_URL e DIRECT_URL no `.env`, com as informações de conexão adquiridas no supabase
-- Adicionar as linhas abaixo no `schema.prisma`:
-  ```json
-  datasource db {
-    provider  = "postgresql"
-    # Adicionar as linhas abaixo
-    url       = env("DATABASE_URL")
-    directUrl = env("DIRECT_URL")
-  }
-  ```
-- Executar `npx prisma migrate deploy` localmente para aplicar as migrations no BD supabase
