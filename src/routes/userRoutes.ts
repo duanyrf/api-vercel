@@ -1,5 +1,6 @@
 import type { FastifyInstance } from "fastify";
 import { addUser } from "../services/addUser";
+import { listUsers } from "../services/listUsers";
 
 type User = {
 	email: string;
@@ -7,8 +8,10 @@ type User = {
 };
 
 export async function userRoutes(api: FastifyInstance) {
-	api.get("/", (req, res) => {
-		return res.status(200).send({ message: "Hello user..." });
+	api.get("/", async (req, res) => {
+		const allUsers = await listUsers();
+
+		return res.status(200).send(listUsers);
 	});
 
 	api.post("/", async (req, res) => {
@@ -17,5 +20,9 @@ export async function userRoutes(api: FastifyInstance) {
 		const newUser = await addUser({ email, nome });
 
 		return res.status(201).send(newUser);
+	});
+
+	api.get("/hello", (req, res) => {
+		return res.status(200).send({ message: "Hello user..." });
 	});
 }
