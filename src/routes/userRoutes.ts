@@ -11,7 +11,7 @@ export async function userRoutes(api: FastifyInstance) {
 	api.get("/", async (req, res) => {
 		const allUsers = await listUsers();
 
-		return res.status(200).send(listUsers);
+		return res.status(200).send(allUsers);
 	});
 
 	api.post("/", async (req, res) => {
